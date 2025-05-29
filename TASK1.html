@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prodigy Infotech</title>
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+      color: #2c2c2c;
+      min-height: 100vh;
+      line-height: 1.6;
+      padding-bottom: 3rem;
+    }
+
+    /* Glassmorphism Effect */
+    .glass {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+      transition: all 0.3s ease-in-out;
+    }
+    .glass:hover {
+      background: rgba(255, 255, 255, 0.35);
+      box-shadow: 0 12px 40px rgba(131, 58, 180, 0.3);
+      transform: translateY(-5px);
+    }
+
+    /* Header and Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+    }
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #d81b60;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 4px rgba(216, 27, 96, 0.5);
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    .nav-links li a {
+      color: #6a1b9a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.5rem 0.8rem;
+      border-radius: 12px;
+      transition: background 0.3s, color 0.3s;
+    }
+    .nav-links li a:hover,
+    .nav-links li a:focus {
+      background: #d81b60;
+      color: white;
+      box-shadow: 0 4px 15px rgba(216, 27, 96, 0.6);
+      outline: none;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #f8bbd0, #fce4ec);
+      color: #2c2c2c;
+      padding: 5rem 2rem;
+      text-align: center;
+      border-radius: 20px;
+      max-width: 900px;
+      margin: 3rem auto 4rem auto;
+      box-shadow: 0 15px 40px rgba(248, 187, 208, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, rgba(255,255,255,0.25), transparent 70%);
+      animation: rotate 20s linear infinite;
+      z-index: 0;
+      border-radius: 50%;
+    }
+    @keyframes rotate {
+      from { transform: rotate(0deg);}
+      to { transform: rotate(360deg);}
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      position: relative;
+      z-index: 1;
+      font-weight: 900;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.25);
+      letter-spacing: 3px;
+    }
+    .hero p {
+      font-size: 1.5rem;
+      margin-top: 0.7rem;
+      position: relative;
+      z-index: 1;
+      font-weight: 500;
+      letter-spacing: 1.2px;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.15);
+    }
+
+    /* Sections */
+    .section {
+      padding: 3rem 2rem;
+      max-width: 900px;
+      margin: 0 auto 4rem auto;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+    .section h2 {
+      font-size: 2.5rem;
+      color: #d81b60;
+      margin-bottom: 1.5rem;
+      border-bottom: 3px solid #d81b60;
+      display: inline-block;
+      letter-spacing: 1.5px;
+    }
+    .section p, .section ul {
+      font-size: 1.1rem;
+      color: #4a4a4a;
+    }
+    .section ul {
+      list-style: disc;
+      padding-left: 1.5rem;
+    }
+    .section ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Project Cards */
+    .project-card {
+      background: rgba(255, 255, 255, 0.25);
+      padding: 1.8rem 2rem;
+      border-left: 6px solid #d81b60;
+      box-shadow: 0 10px 25px rgba(216, 27, 96, 0.1);
+      margin-top: 1.5rem;
+      border-radius: 15px;
+      transition: all 0.3s ease;
+    }
+    .project-card:hover {
+      background: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 15px 40px rgba(216, 27, 96, 0.3);
+      transform: translateY(-6px);
+    }
+    .project-card h3 {
+      color: #6a1b9a;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+    .project-card p {
+      color: #3c2a45;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* Contact Section */
+    .contact p {
+      font-size: 1.1rem;
+      margin: 0.5rem 0;
+      color: #442c51;
+    }
+    .contact p a {
+      color: #d81b60;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    .contact p a:hover {
+      text-decoration: underline;
+      color: #6a1b9a;
+    }
+
+    /* Footer */
+    footer {
+      background: #d81b60;
+      color: white;
+      text-align: center;
+      padding: 1.3rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      box-shadow: 0 -5px 20px rgba(216, 27, 96, 0.4);
+      border-radius: 10px 10px 0 0;
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      bottom: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+      }
+      .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+      .hero p {
+        font-size: 1.1rem;
+      }
+      .section {
+        padding: 2rem 1.5rem;
+      }
+    }
+
+    /* Loader Animation */
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, #f8bbd0, #fce4ec);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .loader::before {
+      content: "";
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      position: absolute;
+      width: 140px;
+      height: 55px;
+      z-index: 20;
+      border-radius: 0 0 10px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.274);
+      border-top: none;
+      box-shadow: 0 15px 20px rgba(0, 0, 0, 0.082);
+      animation: anim2 2s infinite;
+
+::contentReference[oaicite:0]{index=0}
+ 
+    }
+    @keyframes anim2 {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(15px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div class="loader" id="loader">
+    <h2 style="color: #d81b60; font-size: 2rem; font-weight: bold;">Loading Prodigy Infotech...</h2>
+  </div>
+
+  <!-- Header & Navigation -->
+  <header>
+    <nav>
+      <div class="logo">Prodigy</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Welcome to Prodigy Infotech</h1>
+    <p>Innovate. Code. Transform. Empowering Future Technologists.</p>
+  </section>
+
+  <!-- About Section -->
+  <section class="section glass" id="about">
+    <h2>About Us</h2>
+    <p>Prodigy Infotech is a leading platform providing internship and mentorship opportunities to aspiring tech professionals across the globe. Our mission is to bridge the gap between academia and industry through hands-on experience, real-world projects, and continuous learning.</p>
+    <ul>
+      <li>Internships in Web Development, Data Science, AI/ML, and more.</li>
+      <li>Hands-on project experience with live mentors.</li>
+      <li>Globally recognized certification and exposure.</li>
+    </ul>
+  </section>
+
+  <!-- Services Section -->
+  <section class="section glass" id="services">
+    <h2>Our Services</h2>
+    <ul>
+      <li>Virtual Internships with real-world projects.</li>
+      <li>1:1 Mentorship by experienced professionals.</li>
+      <li>Certification for all completed internships.</li>
+      <li>Community networking and career support.</li>
+    </ul>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="section glass" id="projects">
+    <h2>Featured Projects</h2>
+
+    <div class="project-card">
+      <h3>Portfolio Website</h3>
+      <p>Designed a stunning personal portfolio using HTML, CSS (glassmorphism), and JavaScript to showcase skills and projects.</p>
+    </div>
+
+    <div class="project-card">
+      <h3>Weather App (API-based)</h3>
+      <p>Developed a weather dashboard using OpenWeatherMap API with real-time search functionality and dynamic UI.</p>
+    </div>
+
+    <div class="project-card">
+      <h3>Responsive Blog</h3>
+      <p>Created a blog platform with fully responsive design, dark mode toggle, and markdown post editor.</p>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="section glass" id="team">
+    <h2>Meet the Team</h2>
+    <p>Our dedicated team includes software engineers, data scientists, designers, and educators committed to making tech education accessible to all.</p>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section glass" id="testimonials">
+    <h2>Testimonials</h2>
+    <ul>
+      <li>"My experience with Prodigy Infotech was phenomenal. The internship gave me real-world exposure!" — <strong>Riya Sharma</strong></li>
+      <li>"Thanks to Prodigy, I landed my first internship in web development. Highly recommended!" — <strong>Amit Verma</strong></li>
+    </ul>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section glass contact" id="contact">
+    <h2>Contact Us</h2>
+    <p>📧 Email: <a href="mailto:info@prodigyinfotech.tech">info@prodigyinfotech.tech</a></p>
+    <p>🌐 Website: <a href="https://prodigyinfotech.tech" target="_blank">https://prodigyinfotech.tech</a></p>
+    <p>📍 Location: Virtual (Global Access)</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Prodigy Infotech. All Rights Reserved.
+  </footer>
+
+  <!-- JavaScript for Loader -->
+  <script>
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("loader");
+      loader.style.opacity = "0";
+      loader.style.visibility = "hidden";
+      loader.style.transition = "opacity 0.8s ease";
+      setTimeout(() => loader.remove(), 800);
+    });
+  </script>
+</body>
+</html>
